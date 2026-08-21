@@ -1,13 +1,9 @@
 # mutate4swift
 
-Use this command as the Swift mutation test gate in SwarmForge.
+Use `mutate4swift` for Swift mutation verification.
 
-## Install
-
-```bash
-python -m pip install --upgrade "git+https://github.com/lukasa1993/mutate4swift.git"
-```
-
-## Verify
-
-Read `README.md`, inspect `mutate4swift --help`, and run the command from the project root. Keep generated reports under `target/` and do not commit them.
+1. Run `mutate4swift --help` before first use.
+2. Use the complete Swift test command.
+3. Keep Swift build validation enabled.
+4. Treat exit `1` as a timeout, parser, build, test, or restoration failure.
+5. Treat exit `2` as a surviving-mutant failure.
