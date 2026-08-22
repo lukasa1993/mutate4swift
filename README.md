@@ -1,30 +1,13 @@
 # mutate4swift
 
-`mutate4swift` performs source-level mutation testing for Swift projects. It changes one operator or Boolean value at a time, runs the test command, and restores the original source in a `finally` block.
-
-## Install
+`mutate4swift` performs syntax-aware mutation testing for Swift. It verifies the baseline, restores source through a crash-recovery journal, separates timeouts and compile errors from killed mutants, and writes a versioned JSON manifest.
 
 ```bash
 pipx install git+https://github.com/lukasa1993/mutate4swift.git
+mutate4swift --test-command "<project test command>" --validate-command "<project build command>"
 ```
 
-## Run
-
-```bash
-mutate4swift --test-command "swift test --enable-code-coverage"
-```
-
-The command runs the unchanged test suite first. It stops if the baseline fails. Use `--skip-baseline` only when another step already verified the same source.
-
-Useful options:
-
-```bash
-mutate4swift --list
-mutate4swift --max-mutants 25
-mutate4swift --json
-```
-
-Results are written to `target/mutation/mutate4swift.json`. Exit status `2` means that one or more mutants survived.
+Compiled C-family projects require a detected or explicit validation command. Timeouts, invalid syntax, and compile errors return status `1`; surviving mutants return status `2`.
 
 ## Development
 
